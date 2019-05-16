@@ -1,0 +1,19 @@
+{
+  "data": {
+    "in_port": {
+      "data": {}
+    },
+    "dep_from_eu_port": {
+      "data": {}
+    },
+    "arr_at_eu_port": {
+      "data": {}
+    },
+    "eu_to_eu": {
+      "data": {}
+    },
+    "summary": {
+      "data": {}
+    }
+  }
+}

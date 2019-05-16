@@ -1,0 +1,20 @@
+{
+    "save_dir": "data/esm3_daily/%s/%s",
+    "save_type": "imo_num_repo",
+    "service_code" : "ESM",
+    "service_area": "berth",
+    "use_data_layer": [
+        "custom"
+    ],
+    "calc_diff_frm_last_rep" : {
+    },
+    "save_rep_type": [
+      "DEP",
+      "ARR",
+      "STATUS",
+      "NOON"
+    ],
+    "recv_history": [
+      "class_nk"
+    ]
+}

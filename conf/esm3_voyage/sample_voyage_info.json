@@ -1,0 +1,22 @@
+{
+  "data": {
+    "record_type": "voyage",
+    "for_row": {
+      "data": {
+        "voyage_number": "1234"
+      }
+    },
+    "include_reports": {
+      "from": {},
+      "to": {},
+      "type": "underway",
+      "addition_report": [],
+      "ship_info" : {
+        "vessel_name_repo" : "Test ship data",
+        "imo_num_repo" : "1000015",
+        "callsign_repo" : "CASE5",
+        "wni_ship_num" : "2233"
+      }
+    }
+  }
+}

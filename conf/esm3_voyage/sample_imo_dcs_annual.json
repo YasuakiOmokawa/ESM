@@ -1,0 +1,47 @@
+{
+   "data" : {
+      "ship_info" : {
+        "vessel_name_repo" : "Test ship data",
+        "imo_num_repo" : "1000015",
+        "callsign_repo" : "CASE5",
+        "wni_ship_num" : "2233"
+      },
+      "summary" : {
+         "data" : {
+            "hours_underway" : "24",
+            "distance_travelled" : "100"
+         }
+      },
+      "beginning_of_year" : {
+         "data" : {
+            "hours_underway" : "24",
+            "distance_travelled" : "100"
+         }
+      },
+      "middle_of_year" : {
+         "data" : {
+            "hours_underway" : "24",
+            "distance_travelled" : "100"
+         }
+      },
+      "end_of_year" : {
+         "data" : {
+            "hours_underway" : "24",
+            "distance_travelled" : "100"
+         }
+      }
+   },
+   "custom" : [
+      {
+         "key": "distance_travelled",
+         "edit_info" : [
+           {
+              "updated_value" : "200",
+              "exec_user" : "sugita@wni.com",
+              "before_update_value" : "100",
+              "exec_time" : "2017-05-01T10:12:00Z"
+           }
+         ]
+      }
+   ]
+}

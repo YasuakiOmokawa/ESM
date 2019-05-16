@@ -1,0 +1,3943 @@
+{
+    "data": {
+        "for_row": {
+            "voyage": [
+                {
+                    "voyage_number": {
+                        "type": "from_report_only",
+                        "report": [
+                            {
+                                "rep_type": "voyage_end",
+                                "rep_item": [
+                                    "calc",
+                                    "voyage_num"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "eu_mrv": {
+                        "type": "calculate_phase1",
+                        "report": [],
+                        "calc_method": "VoyageEuMrvDataSummarizer::_calc_voyage_type",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "record_type"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "dep_port"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "arr_port"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "eu_mrv_display": {
+                        "type": "none",
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "dep_port": {
+                        "type": "from_report_only",
+                        "report": [
+                            {
+                                "rep_type": "voyage_end",
+                                "rep_item": [
+                                    "calc",
+                                    "dep_port_code"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "dep_port_display": {
+                        "type": "none",
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "dep_date_time": {
+                        "type": "from_report_only",
+                        "report": [
+                            {
+                                "rep_type": "voyage_end",
+                                "rep_item": [
+                                    "calc",
+                                    "start_time"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "format": {
+                            "round": "",
+                            "datetime": "%m/%d %H:%M",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "arr_port": {
+                        "type": "from_report_only",
+                        "report": [
+                            {
+                                "rep_type": "voyage_end",
+                                "rep_item": [
+                                    "calc",
+                                    "arr_port_code"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "arr_port_display": {
+                        "type": "none",
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "arr_date_time": {
+                        "type": "from_report_only",
+                        "report": [
+                            {
+                                "rep_type": "voyage_end",
+                                "rep_item": [
+                                    "calc",
+                                    "report_time"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "format": {
+                            "round": "",
+                            "datetime": "%m/%d %H:%M",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "distance_travelled": {
+                        "type": "from_report_only",
+                        "report": [
+                            {
+                                "rep_type": "voyage_end",
+                                "rep_item": [
+                                    "calc",
+                                    "berth_berth_total_distance"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "99999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "time_at_sea": {
+                        "type": "calculate_phase1",
+                        "is_recursive": "1",
+                        "calc_method": "VoyageRowDataSummarizer::_calc_voyage_time",
+                        "calc_args": [
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_end",
+                                "rep_item": [
+                                    "calc",
+                                    "berth_berth_time_spent_hours"
+                                ],
+                                "is_exchange": "1"
+                            },
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "anchor_end",
+                                "rep_item": [
+                                    "calc",
+                                    "report_time"
+                                ]
+                            },
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "anchor_start",
+                                "rep_item": [
+                                    "calc",
+                                    "report_time"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0.0",
+                            "max": "9999.9"
+                        },
+                        "format": {
+                            "round": "1",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "hours_underway": {
+                        "type": "calculate_phase1",
+                        "is_recursive": "1",
+                        "calc_method": "VoyageRowDataSummarizer::_calc_voyage_time",
+                        "calc_args": [
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_end",
+                                "rep_item": [
+                                    "calc",
+                                    "berth_berth_total_hours"
+                                ],
+                                "is_exchange": "1"
+                            },
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "anchor_end",
+                                "rep_item": [
+                                    "calc",
+                                    "report_time"
+                                ]
+                            },
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "anchor_start",
+                                "rep_item": [
+                                    "calc",
+                                    "report_time"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0.0",
+                            "max": "9999.9"
+                        },
+                        "format": {
+                            "round": "1",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "foc_dogo": {
+                        "type": "calculate_phase1",
+                        "calc_method": "EsmLib::CalcSum",
+                        "calc_args": [
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_end",
+                                "rep_item": [
+                                    "calc",
+                                    "berth_berth_cons_total_hsdo"
+                                ]
+                            },
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_end",
+                                "rep_item": [
+                                    "calc",
+                                    "berth_berth_cons_total_lsdo"
+                                ]
+                            },
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_end",
+                                "rep_item": [
+                                    "calc",
+                                    "berth_berth_cons_total_hsgo"
+                                ]
+                            },
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_end",
+                                "rep_item": [
+                                    "calc",
+                                    "berth_berth_cons_total_lsgo"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_lfo": {
+                        "type": "calculate_phase1",
+                        "calc_method": "EsmLib::CalcSum",
+                        "calc_args": [
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_end",
+                                "rep_item": [
+                                    "calc",
+                                    "berth_berth_cons_total_ls-lfo"
+                                ]
+                            },
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_end",
+                                "rep_item": [
+                                    "calc",
+                                    "berth_berth_cons_total_ulsfo"
+                                ]
+                            },
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_end",
+                                "rep_item": [
+                                    "calc",
+                                    "berth_berth_cons_total_ulsdogo"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "9999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_hfo": {
+                        "type": "calculate_phase1",
+                        "calc_method": "EsmLib::CalcSum",
+                        "calc_args": [
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_end",
+                                "rep_item": [
+                                    "calc",
+                                    "berth_berth_cons_total_ls-hfo"
+                                ]
+                            },
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_end",
+                                "rep_item": [
+                                    "calc",
+                                    "berth_berth_cons_total_hs-hfo"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "9999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_other": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "9999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "co2_dogo": {
+                        "type": "calculate_phase2",
+                        "calc_method": "EsmLib::CalcMulti",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "foc_dogo"
+                                ]
+                            },
+                            {
+                                "arg_type": "string_value",
+                                "arg_item": "3.206"
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "co2_lfo": {
+                        "type": "calculate_phase2",
+                        "calc_method": "EsmLib::CalcMulti",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "foc_lfo"
+                                ]
+                            },
+                            {
+                                "arg_type": "string_value",
+                                "arg_item": "3.114"
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "99999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "co2_hfo": {
+                        "type": "calculate_phase2",
+                        "calc_method": "EsmLib::CalcMulti",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "foc_hfo"
+                                ]
+                            },
+                            {
+                                "arg_type": "string_value",
+                                "arg_item": "3.151"
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "99999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "co2_other": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "99999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "cargo_weight": {
+                        "type": "from_report_only",
+                        "report": [
+                            {
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "cargo_weight"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "passenger": {
+                        "type": "from_report_only",
+                        "report": [
+                            {
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "total_passenger"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "unit_laden": {
+                        "type": "from_report_only",
+                        "report": [
+                            {
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "laden_teu"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "unit_empty": {
+                        "type": "from_report_only",
+                        "report": [
+                            {
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "empty_teu"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "cars": {
+                        "type": "from_report_only",
+                        "report": [
+                            {
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "total_cars"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "dwt_carried": {
+                        "type": "from_report_only",
+                        "report": [
+                            {
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "dwt_carried"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "volume": {
+                        "type": "from_report_only",
+                        "report": [
+                            {
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "cargo_volume"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "transport_work": {
+                        "type": "calculate_phase1",
+                        "calc_method": "EsmLib::CalcMulti",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "distance_travelled"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "cargo_weight"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "9999999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_dogo_per_distance": {
+                        "type": "calculate_phase2",
+                        "calc_method": "VoyageRowDataSummarizer::_calc_div",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "foc_dogo"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "distance_travelled"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "9999.9999"
+                        },
+                        "format": {
+                            "round": "4",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_lfo_per_distance": {
+                        "type": "calculate_phase2",
+                        "calc_method": "VoyageRowDataSummarizer::_calc_div",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "foc_lfo"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "distance_travelled"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "9999.9999"
+                        },
+                        "format": {
+                            "round": "4",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_hfo_per_distance": {
+                        "type": "calculate_phase2",
+                        "calc_method": "VoyageRowDataSummarizer::_calc_div",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "foc_hfo"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "distance_travelled"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "9999.9999"
+                        },
+                        "format": {
+                            "round": "4",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_other_per_distance": {
+                        "type": "calculate_phase2",
+                        "calc_method": "VoyageRowDataSummarizer::_calc_div",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "foc_other"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "distance_travelled"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "9999.9999"
+                        },
+                        "format": {
+                            "round": "4",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_dogo_per_transport_work": {
+                        "type": "calculate_phase2",
+                        "calc_method": "VoyageRowDataSummarizer::_calc_div",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "foc_dogo"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "transport_work"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "99.99999999"
+                        },
+                        "format": {
+                            "round": "8",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_lfo_per_transport_work": {
+                        "type": "calculate_phase2",
+                        "calc_method": "VoyageRowDataSummarizer::_calc_div",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "foc_lfo"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "transport_work"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "99.99999999"
+                        },
+                        "format": {
+                            "round": "8",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_hfo_per_transport_work": {
+                        "type": "calculate_phase2",
+                        "calc_method": "VoyageRowDataSummarizer::_calc_div",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "foc_hfo"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "transport_work"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "99.99999999"
+                        },
+                        "format": {
+                            "round": "8",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_other_per_transport_work": {
+                        "type": "calculate_phase2",
+                        "calc_method": "VoyageRowDataSummarizer::_calc_div",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "foc_other"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "transport_work"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "99.99999999"
+                        },
+                        "format": {
+                            "round": "8",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "co2_per_distance": {
+                        "type": "calculate_phase3",
+                        "calc_method": "VoyageRowDataSummarizer::_calc_efficiency",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "co2_dogo"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "co2_lfo"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "co2_hfo"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "co2_other"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "distance_travelled"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "9999.9999"
+                        },
+                        "format": {
+                            "round": "4",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "eeoi": {
+                        "type": "calculate_phase3",
+                        "calc_method": "VoyageRowDataSummarizer::_calc_efficiency",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "co2_dogo"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "co2_lfo"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "co2_hfo"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "co2_other"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "transport_work"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "99.99999999"
+                        },
+                        "format": {
+                            "round": "8",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                }
+            ],
+            "in_port": [
+                {
+                    "voyage_number": {
+                        "type": "from_report_only",
+                        "report": [
+                            {
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "voyage_num"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "eu_mrv": {
+                        "type": "calculate_phase1",
+                        "calc_method": "VoyageEuMrvDataSummarizer::_calc_voyage_type",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "record_type"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "dep_port"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "arr_port"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "eu_mrv_display": {
+                        "type": "none",
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "dep_port": {
+                        "type": "from_report_only",
+                        "report": [
+                            {
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "dep_port_code"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "dep_port_display": {
+                        "type": "none",
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "dep_date_time": {
+                        "type": "from_report_only",
+                        "report": [
+                            {
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "start_time"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "format": {
+                            "round": "",
+                            "datetime": "%m/%d %H:%M",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "arr_port": {
+                        "type": "from_report_only",
+                        "report": [
+                            {
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "dep_port_code"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "arr_port_display": {
+                        "type": "none",
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "arr_date_time": {
+                        "type": "from_report_only",
+                        "report": [
+                            {
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "report_time"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "format": {
+                            "round": "",
+                            "datetime": "%m/%d %H:%M",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "distance_travelled": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "99999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "time_at_sea": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.0",
+                            "max": "9999.9"
+                        },
+                        "format": {
+                            "round": "1",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "hours_underway": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.0",
+                            "max": "9999.9"
+                        },
+                        "format": {
+                            "round": "1",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "foc_dogo": {
+                        "type": "calculate_phase1",
+                        "calc_method": "EsmLib::CalcSum",
+                        "calc_args": [
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "inport_cons_hsdo"
+                                ]
+                            },
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "inport_cons_lsdo"
+                                ]
+                            },
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "inport_cons_hsgo"
+                                ]
+                            },
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "inport_cons_lsgo"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_lfo": {
+                        "type": "calculate_phase1",
+                        "calc_method": "EsmLib::CalcSum",
+                        "calc_args": [
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "inport_cons_ls-lfo"
+                                ]
+                            },
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "inport_cons_ulsfo"
+                                ]
+                            },
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "inport_cons_ulsdogo"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "9999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_hfo": {
+                        "type": "calculate_phase1",
+                        "calc_method": "EsmLib::CalcSum",
+                        "calc_args": [
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "inport_cons_ls-hfo"
+                                ]
+                            },
+                            {
+                                "arg_type": "rep",
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "inport_cons_hs-hfo"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "9999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_other": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "9999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "co2_dogo": {
+                        "type": "calculate_phase2",
+                        "calc_method": "EsmLib::CalcMulti",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "foc_dogo"
+                                ]
+                            },
+                            {
+                                "arg_type": "string_value",
+                                "arg_item": "3.206"
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "co2_lfo": {
+                        "type": "calculate_phase2",
+                        "calc_method": "EsmLib::CalcMulti",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "foc_lfo"
+                                ]
+                            },
+                            {
+                                "arg_type": "string_value",
+                                "arg_item": "3.114"
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "99999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "co2_hfo": {
+                        "type": "calculate_phase2",
+                        "calc_method": "EsmLib::CalcMulti",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "foc_hfo"
+                                ]
+                            },
+                            {
+                                "arg_type": "string_value",
+                                "arg_item": "3.151"
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "99999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "co2_other": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "99999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "cargo_weight": {
+                        "type": "none",
+                        "report": [
+                            {
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "cargo_weight"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "passenger": {
+                        "type": "none",
+                        "report": [
+                            {
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "total_passenger"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "unit_laden": {
+                        "type": "none",
+                        "report": [
+                            {
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "laden_teu"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "unit_empty": {
+                        "type": "none",
+                        "report": [
+                            {
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "empty_teu"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "cars": {
+                        "type": "none",
+                        "report": [
+                            {
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "total_cars"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "dwt_carried": {
+                        "type": "none",
+                        "report": [
+                            {
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "dwt_carried"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "volume": {
+                        "type": "none",
+                        "report": [
+                            {
+                                "rep_type": "voyage_start",
+                                "rep_item": [
+                                    "calc",
+                                    "cargo_volume"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "transport_work": {
+                        "type": "none",
+                        "calc_method": "VoyageRowDataSummarizer::_calc_transport_work",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "distance_travelled"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "cargo_weight"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "passenger"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "unit"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "cars"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "dwt_carried"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "volume"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "for_row",
+                            "data"
+                        ],
+                        "threshold": {
+                            "min": "0",
+                            "max": "99999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_dogo_per_distance": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.0000",
+                            "max": "0.9999"
+                        },
+                        "format": {
+                            "round": "4",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_lfo_per_distance": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.0000",
+                            "max": "0.9999"
+                        },
+                        "format": {
+                            "round": "4",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_hfo_per_distance": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.0000",
+                            "max": "0.9999"
+                        },
+                        "format": {
+                            "round": "4",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_other_per_distance": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.0000",
+                            "max": "0.9999"
+                        },
+                        "format": {
+                            "round": "4",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_dogo_per_transport_work": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.00000000",
+                            "max": "0.00009999"
+                        },
+                        "format": {
+                            "round": "8",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_lfo_per_transport_work": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.00000000",
+                            "max": "0.00009999"
+                        },
+                        "format": {
+                            "round": "8",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_hfo_per_transport_work": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.00000000",
+                            "max": "0.00009999"
+                        },
+                        "format": {
+                            "round": "8",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_other_per_transport_work": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.00000000",
+                            "max": "0.00009999"
+                        },
+                        "format": {
+                            "round": "8",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "co2_per_distance": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.0000",
+                            "max": "0.9999"
+                        },
+                        "format": {
+                            "round": "4",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "eeoi": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.00000000",
+                            "max": "0.00009999"
+                        },
+                        "format": {
+                            "round": "8",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                }
+            ]
+        },
+        "for_annual": {
+            "eu_mrv": [
+                {
+                    "voyage_number": {
+                        "type": "none",
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "eu_mrv": {
+                        "type": "none",
+                        "report": [],
+                        "calc_method": "VoyageEuMrvDataSummarizer::_calc_voyage_type",
+                        "calc_args": [
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "record_type"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "dep_port"
+                                ]
+                            },
+                            {
+                                "arg_type": "summarize_result",
+                                "summarized_item": [
+                                    "data",
+                                    "for_row",
+                                    "data",
+                                    "arr_port"
+                                ]
+                            }
+                        ],
+                        "output_target": [
+                            "data",
+                            "eu_mrv_type"
+                        ],
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "eu_mrv_display": {
+                        "type": "none",
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "dep_port": {
+                        "type": "none",
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "dep_port_display": {
+                        "type": "none",
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "dep_date_time": {
+                        "type": "none",
+                        "format": {
+                            "round": "",
+                            "datetime": "%m/%d %H:%M",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "arr_port": {
+                        "type": "none",
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "arr_port_display": {
+                        "type": "none",
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "arr_date_time": {
+                        "type": "none",
+                        "format": {
+                            "round": "",
+                            "datetime": "%m/%d %H:%M",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "distance_travelled": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "99999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "time_at_sea": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.0",
+                            "max": "9999.9"
+                        },
+                        "format": {
+                            "round": "1",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "hours_underway": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.0",
+                            "max": "9999.9"
+                        },
+                        "format": {
+                            "round": "1",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "foc_dogo": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "99999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_lfo": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "99999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_hfo": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "99999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_other": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "99999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "co2_dogo": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "999999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "co2_lfo": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "999999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "co2_hfo": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "999999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "co2_other": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "999999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": ""
+                        }
+                    }
+                },
+                {
+                    "cargo_weight": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "9999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "passenger": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "unit_laden": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "unit_empty": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "cars": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "dwt_carried": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "volume": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "transport_work": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "99999999999"
+                        },
+                        "format": {
+                            "round": "0",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_dogo_per_distance": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "9999.9999"
+                        },
+                        "format": {
+                            "round": "4",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_lfo_per_distance": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "9999.9999"
+                        },
+                        "format": {
+                            "round": "4",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_hfo_per_distance": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "9999.9999"
+                        },
+                        "format": {
+                            "round": "4",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_other_per_distance": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "9999.9999"
+                        },
+                        "format": {
+                            "round": "4",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_dogo_per_transport_work": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "99.99999999"
+                        },
+                        "format": {
+                            "round": "8",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_lfo_per_transport_work": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "99.99999999"
+                        },
+                        "format": {
+                            "round": "8",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_hfo_per_transport_work": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "99.99999999"
+                        },
+                        "format": {
+                            "round": "8",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "foc_other_per_transport_work": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "99.99999999"
+                        },
+                        "format": {
+                            "round": "8",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "co2_per_distance": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "9999.9999"
+                        },
+                        "format": {
+                            "round": "4",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                },
+                {
+                    "eeoi": {
+                        "type": "none",
+                        "threshold": {
+                            "min": "0",
+                            "max": "99.99999999"
+                        },
+                        "format": {
+                            "round": "8",
+                            "datetime": "",
+                            "init_val": "***"
+                        }
+                    }
+                }
+            ],
+            "imo_dcs": [
+                {
+                    "cargo_weight": {
+                        "format": {
+                            "init_val": "---",
+                            "round": "",
+                            "datetime": ""
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "dep_date_time": {
+                        "type": "none",
+                        "format": {
+                            "init_val": "---",
+                            "datetime": "%m/%d %H:%M",
+                            "round": ""
+                        }
+                    }
+                },
+                {
+                    "foc_other": {
+                        "threshold": {
+                            "max": "99999.99",
+                            "min": "0.00"
+                        },
+                        "format": {
+                            "init_val": "",
+                            "datetime": "",
+                            "round": "2"
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "dep_port": {
+                        "type": "none",
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "foc_lfo": {
+                        "type": "none",
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        },
+                        "threshold": {
+                            "max": "99999.99",
+                            "min": "0.00"
+                        }
+                    }
+                },
+                {
+                    "co2_dogo": {
+                        "type": "none",
+                        "format": {
+                            "init_val": "***",
+                            "datetime": "",
+                            "round": "2"
+                        },
+                        "threshold": {
+                            "max": "999999.99",
+                            "min": "0.00"
+                        }
+                    }
+                },
+                {
+                    "distance_travelled": {
+                        "type": "none",
+                        "format": {
+                            "datetime": "",
+                            "round": "0",
+                            "init_val": ""
+                        },
+                        "threshold": {
+                            "min": "0",
+                            "max": "99999"
+                        }
+                    }
+                },
+                {
+                    "foc_lfo_per_distance": {
+                        "format": {
+                            "init_val": "---",
+                            "datetime": "",
+                            "round": ""
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "foc_lfo_per_transport_work": {
+                        "type": "none",
+                        "format": {
+                            "init_val": "---",
+                            "round": "",
+                            "datetime": ""
+                        }
+                    }
+                },
+                {
+                    "transport_work": {
+                        "format": {
+                            "init_val": "---",
+                            "round": "",
+                            "datetime": ""
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "dep_port_display": {
+                        "format": {
+                            "init_val": "---",
+                            "datetime": "",
+                            "round": ""
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "foc_dogo_per_transport_work": {
+                        "format": {
+                            "init_val": "---",
+                            "datetime": "",
+                            "round": ""
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "foc_dogo_per_distance": {
+                        "type": "none",
+                        "format": {
+                            "init_val": "---",
+                            "datetime": "",
+                            "round": ""
+                        }
+                    }
+                },
+                {
+                    "foc_hfo": {
+                        "format": {
+                            "init_val": "***",
+                            "round": "2",
+                            "datetime": ""
+                        },
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "99999.99"
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "arr_port": {
+                        "format": {
+                            "init_val": "---",
+                            "round": "",
+                            "datetime": ""
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "arr_date_time": {
+                        "type": "none",
+                        "format": {
+                            "init_val": "---",
+                            "round": "",
+                            "datetime": "%m/%d %H:%M"
+                        }
+                    }
+                },
+                {
+                    "cars": {
+                        "format": {
+                            "init_val": "---",
+                            "round": "",
+                            "datetime": ""
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "eu_mrv": {
+                        "type": "none",
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "passenger": {
+                        "format": {
+                            "init_val": "---",
+                            "datetime": "",
+                            "round": ""
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "co2_other": {
+                        "format": {
+                            "init_val": "",
+                            "round": "2",
+                            "datetime": ""
+                        },
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "999999.99"
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "dwt_carried": {
+                        "type": "none",
+                        "format": {
+                            "init_val": "---",
+                            "datetime": "",
+                            "round": ""
+                        }
+                    }
+                },
+                {
+                    "arr_port_display": {
+                        "format": {
+                            "datetime": "",
+                            "round": "",
+                            "init_val": "---"
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "unit_empty": {
+                        "format": {
+                            "init_val": "---",
+                            "datetime": "",
+                            "round": ""
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "foc_other_per_transport_work": {
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": "---"
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "eu_mrv_display": {
+                        "format": {
+                            "init_val": "---",
+                            "round": "",
+                            "datetime": ""
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "foc_other_per_distance": {
+                        "format": {
+                            "datetime": "",
+                            "round": "",
+                            "init_val": "---"
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "co2_hfo": {
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "999999.99"
+                        },
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "foc_hfo_per_distance": {
+                        "format": {
+                            "init_val": "---",
+                            "round": "",
+                            "datetime": ""
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "volume": {
+                        "format": {
+                            "datetime": "",
+                            "round": "",
+                            "init_val": "---"
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "co2_lfo": {
+                        "format": {
+                            "round": "2",
+                            "datetime": "",
+                            "init_val": "***"
+                        },
+                        "threshold": {
+                            "max": "999999.99",
+                            "min": "0.00"
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "unit_laden": {
+                        "type": "none",
+                        "format": {
+                            "init_val": "---",
+                            "round": "",
+                            "datetime": ""
+                        }
+                    }
+                },
+                {
+                    "hours_underway": {
+                        "threshold": {
+                            "max": "9999.9",
+                            "min": "0.0"
+                        },
+                        "format": {
+                            "datetime": "",
+                            "round": "1",
+                            "init_val": ""
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "time_at_sea": {
+                        "format": {
+                            "init_val": "---",
+                            "datetime": "",
+                            "round": ""
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "voyage_number": {
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": "---"
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "co2_per_distance": {
+                        "type": "none",
+                        "format": {
+                            "datetime": "",
+                            "round": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "eeoi": {
+                        "type": "none",
+                        "format": {
+                            "round": "",
+                            "datetime": "",
+                            "init_val": "---"
+                        }
+                    }
+                },
+                {
+                    "foc_dogo": {
+                        "threshold": {
+                            "min": "0.00",
+                            "max": "99999.99"
+                        },
+                        "format": {
+                            "init_val": "***",
+                            "round": "2",
+                            "datetime": ""
+                        },
+                        "type": "none"
+                    }
+                },
+                {
+                    "foc_hfo_per_transport_work": {
+                        "format": {
+                            "init_val": "---",
+                            "round": "",
+                            "datetime": ""
+                        },
+                        "type": "none"
+                    }
+                }
+            ]
+        },
+        "excel_column": [
+            {
+                "key": "voyage_number",
+                "style": "gray1",
+                "width": "10",
+                "category1": "Voy.\nNumber",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "eu_mrv_display",
+                "style": "gray1",
+                "width": "15",
+                "category1": "EU MRV",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "dep_port_display",
+                "style": "gray1",
+                "width": "20",
+                "category1": "Dep. port",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "dep_date_time",
+                "style": "gray1",
+                "width": "15",
+                "category1": "Date\nTime",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "arr_port_display",
+                "style": "gray1",
+                "width": "20",
+                "category1": "Dest. Port",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "arr_date_time",
+                "style": "gray1",
+                "width": "15",
+                "category1": "Date\nTime",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "distance_travelled",
+                "style": "gray1",
+                "width": "10",
+                "category1": "Distance\nTravelled",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "time_at_sea",
+                "style": "gray1",
+                "width": "10",
+                "category1": "Time\nat sea",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "hours_underway",
+                "style": "gray1",
+                "width": "10",
+                "category1": "Hours\nUnderway",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "foc_dogo",
+                "style": "gray1",
+                "width": "10",
+                "category1": "FOC\nDO/GO",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "foc_lfo",
+                "style": "gray1",
+                "width": "10",
+                "category1": "FOC\nLFO",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "foc_hfo",
+                "style": "gray1",
+                "width": "10",
+                "category1": "FOC\nHFO",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "foc_other",
+                "style": "gray1",
+                "width": "10",
+                "category1": "FOC\nother",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "co2_dogo",
+                "style": "gray1",
+                "width": "10",
+                "category1": "CO2\nDO/GO",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "co2_lfo",
+                "style": "gray1",
+                "width": "10",
+                "category1": "CO2\nLFO",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "co2_hfo",
+                "style": "gray1",
+                "width": "10",
+                "category1": "CO2\nHFO",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "co2_other",
+                "style": "gray1",
+                "width": "10",
+                "category1": "CO2\nother",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "cargo_weight",
+                "style": "gray1",
+                "width": "10",
+                "category1": "Cargo\nWeight(MT)",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "passenger",
+                "style": "gray1",
+                "width": "10",
+                "category1": "Passenger",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "unit_laden",
+                "style": "gray1",
+                "width": "10",
+                "category1": "Unit\n(TEU,Laden)",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "unit_empty",
+                "style": "gray1",
+                "width": "10",
+                "category1": "Unit\n(TEU,Empty)",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "cars",
+                "style": "gray1",
+                "width": "10",
+                "category1": "Cars",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "dwt_carried",
+                "style": "gray1",
+                "width": "10",
+                "category1": "DWT\nCarried(MT)",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "volume",
+                "style": "gray1",
+                "width": "10",
+                "category1": "Volume\n(m^3)",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "transport_work",
+                "style": "gray1",
+                "width": "10",
+                "category1": "Transport\nwork",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "foc_dogo_per_distance",
+                "style": "gray1",
+                "width": "10",
+                "category1": "FOC DO/GO per\ndistance",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "foc_lfo_per_distance",
+                "style": "gray1",
+                "width": "10",
+                "category1": "FOC LFO per\ndistance",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "foc_hfo_per_distance",
+                "style": "gray1",
+                "width": "10",
+                "category1": "FOC HFO per\ndistance",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "foc_other_per_distance",
+                "style": "gray1",
+                "width": "10",
+                "category1": "FOC other per\ndistance",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "foc_dogo_per_transport_work",
+                "style": "gray1",
+                "width": "10",
+                "category1": "FOC DO/GO per\ntransport work",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "foc_lfo_per_transport_work",
+                "style": "gray1",
+                "width": "10",
+                "category1": "FOC LFO per\ntransport work",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "foc_hfo_per_transport_work",
+                "style": "gray1",
+                "width": "10",
+                "category1": "FOC HFO per\ntransport work",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "foc_other_per_transport_work",
+                "style": "gray1",
+                "width": "10",
+                "category1": "FOC other per\ntransport work",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "co2_per_distance",
+                "style": "gray1",
+                "width": "10",
+                "category1": "CO2 emissions\nper distance",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            },
+            {
+                "key": "eeoi",
+                "style": "gray1",
+                "width": "10",
+                "category1": "EEOI",
+                "columns": "1",
+                "report_type": [
+                    "DEP",
+                    "NOON",
+                    "ARR",
+                    "STATUS"
+                ],
+                "display_item_key": "",
+                "voyage": "#",
+                "format": {
+                    "round": "",
+                    "datetime": ""
+                },
+                "merge_style": "gray2",
+                "category2": "",
+                "category3": ""
+            }
+        ]
+    }
+}

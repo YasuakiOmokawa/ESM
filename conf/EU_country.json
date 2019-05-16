@@ -1,0 +1,116 @@
+{
+	"BE": {
+		"name": "Belgium"
+	},
+	"FR": {
+		"name": "France"
+	},
+	"IT": {
+		"name": "Italy"
+	},
+	"LU": {
+		"name": "Luxembourg"
+	},
+	"NL": {
+		"name": "Netherlands"
+	},
+	"DE": {
+		"name": "Germany"
+	},
+	"DK": {
+		"name": "Denmark"
+	},
+	"IE": {
+		"name": "Ireland"
+	},
+	"GB": {
+		"name": "United Kingdom"
+	},
+	"GR": {
+		"name": "Greece"
+	},
+	"PT": {
+		"name": "Portugal"
+	},
+	"ES": {
+		"name": "Spain"
+	},
+	"AT": {
+		"name": "Austria"
+	},
+	"FI": {
+		"name": "Finland"
+	},
+	"SE": {
+		"name": "Sweden"
+	},
+	"CY": {
+		"name": "Cyprus"
+	},
+	"CZ": {
+		"name": "Czech Republic"
+	},
+	"EE": {
+		"name": "Estonia"
+	},
+	"HU": {
+		"name": "Hungary"
+	},
+	"LV": {
+		"name": "Latvia"
+	},
+	"LT": {
+		"name": "Lithuania"
+	},
+	"MT": {
+		"name": "Malta"
+	},
+	"PL": {
+		"name": "Poland"
+	},
+	"SK": {
+		"name": "Slovakia"
+	},
+	"SI": {
+		"name": "Slovenia"
+	},
+	"BG": {
+		"name": "Bulgaria"
+	},
+	"RO": {
+		"name": "Romania"
+	},
+	"HR": {
+		"name": "Croatia"
+	},
+	"NO": {
+		"name": "Norway"
+	},
+	"IS": {
+		"name": "Iceland"
+	},
+	"GP": {
+		"name": "Guadeloupe"
+	},
+	"MQ": {
+		"name": "Martinique"
+	},
+	"GF": {
+		"name": "French Guiana"
+	},
+	"MF": {
+		"name": "Saint-Martin"
+	},
+	"YT": {
+		"name": "Mayotte"
+	},
+	"RE": {
+		"name": "Reunion"
+	},
+	"GI": {
+		"name": "Gibraltar"
+	},
+        "FX": {
+                "name": "France, Metropolitan"
+        }
+}

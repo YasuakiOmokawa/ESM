@@ -1,0 +1,413 @@
+{
+  "data": {
+    "for_row": {
+      "voyage": [
+        { 
+          "voyage_number": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"]
+          }
+        },
+        {
+          "eu_mrv": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "dep_port_code"] },
+              { "rep_type": "voyage_end", "rep_item": ["calc", "arr_port_code"] }
+            ],
+            "output_target": ["data", "for_row", "data"]
+          }
+        },
+        {
+          "dep_port": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "dep_port_code"] }
+            ],
+            "output_target": ["data", "for_row", "data"]
+          }
+        },
+        {
+          "dep_date_time": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "dep_time"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": {"round":"" , "datetime":"%m/%d %H:%M"}
+          }
+        },
+        {
+          "arr_port": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "arr_port_code"] }
+            ],
+            "output_target": ["data", "for_row", "data"]
+          }
+        },
+        {
+          "arr_date_time": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "arr_time"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": {"round":"" , "datetime":"%m/%d %H:%M"}
+          }
+        },
+        {
+          "distance_travelled": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "steaming_distance"] }
+            ],
+            "output_target": ["data", "for_row", "data"]
+          }
+        },
+        {
+          "time_at_sea": {
+            "type": "calculate_phase1",
+            "calc_method": "VoyageRowDataSummarizer::_calc_voyage_time",
+            "calc_args": [
+              { "arg_type": "rep", "rep_type": "voyage_end",   "rep_item": ["calc", "time_spent_hours"] },
+              { "arg_type": "rep", "rep_type": "anchor_start", "rep_item": ["calc", "report_time"] },
+              { "arg_type": "rep", "rep_type": "anchor_end",   "rep_item": ["calc", "report_time"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": {"round":"1" , "datetime":""}
+          }
+        },
+        {
+          "hours_underway": {
+            "calc_method": "VoyageRowDataSummarizer::_calc_voyage_time",
+            "calc_args": [
+              { "arg_type": "rep", "rep_type": "voyage_end",   "rep_item": ["calc", "time_spent_hours"] },
+              { "arg_type": "rep", "rep_type": "anchor_start", "rep_item": ["calc", "report_time"] },
+              { "arg_type": "rep", "rep_type": "anchor_end",   "rep_item": ["calc", "report_time"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": {"round":"1" , "datetime":""}
+          }
+        },
+        {
+          "foc_dogo": {
+            "type": "calculate_phase1",
+            "calc_method": "EsmLib::CalcSum",
+            "calc_args": [
+              { "arg_type": "rep", "rep_type": "voyage_end", "rep_item": ["calc", "cons_total_hsdo"] },
+              { "arg_type": "rep", "rep_type": "voyage_end", "rep_item": ["calc", "cons_total_lsdo"] },
+              { "arg_type": "rep", "rep_type": "voyage_end", "rep_item": ["calc", "cons_total_hsgo"] },
+              { "arg_type": "rep", "rep_type": "voyage_end", "rep_item": ["calc", "cons_total_lsgo"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": {"round":"2" , "datetime":""}
+          }
+        },
+        {
+          "foc_lfo": {
+            "type": "calculate_phase1",
+            "calc_method": "EsmLib::CalcSum",
+            "report": [
+              { "arg_type": "rep", "rep_type": "voyage_end", "rep_item": ["calc", "cons_total_ls-lfo"] },
+              { "arg_type": "rep", "rep_type": "voyage_end", "rep_item": ["calc", "cons_total_ulsfo"] },
+              { "arg_type": "rep", "rep_type": "voyage_end", "rep_item": ["calc", "cons_total_ulsdogo"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"2" , "datetime":""}
+          }
+        },
+        {
+          "foc_hfo": {
+            "type": "calculate_phase1",
+            "calc_method": "EsmLib::CalcSum",
+            "report": [
+              { "arg_type": "rep", "rep_type": "voyage_end", "rep_item": ["calc", "cons_total_ls-hfo"] },
+              { "arg_type": "rep", "rep_type": "voyage_end", "rep_item": ["calc", "cons_total_hs-hfo"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"2" , "datetime":""}
+          }
+        },
+        {
+          "foc_other": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["", ""] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"2" , "datetime":""}
+          }
+        },
+        {
+          "co2_dogo": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end" }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"2" , "datetime":""}
+          }
+        },
+        {
+          "co2_lfo": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"2" , "datetime":""}
+          }
+        },
+        {
+          "co2_hfo": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"2" , "datetime":""}
+          }
+        },
+        {
+          "co2_other": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"2" , "datetime":""}
+          }
+        },
+        {
+          "cargo_weight": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"" , "datetime":""}
+          }
+        },
+        {
+          "passenger": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"" , "datetime":""}
+          }
+        },
+        {
+          "unit": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"" , "datetime":""}
+          }
+        },
+        {
+          "cars": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"" , "datetime":""}
+          }
+        },
+        {
+          "dwt_carried": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"" , "datetime":""}
+          }
+        },
+        {
+          "volume": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"" , "datetime":""}
+          }
+        },
+        {
+          "transport_work": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"" , "datetime":""}
+          }
+        },
+        {
+          "foc_dogo_per_distance": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"" , "datetime":""}
+          }
+        },
+        {
+          "foc_lfo_per_distance": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"" , "datetime":""}
+          }
+        },
+        {
+          "foc_hfo_per_distance": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"" , "datetime":""}
+          }
+        },
+        {
+          "foc_other_per_distance": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"" , "datetime":""}
+          }
+        },
+        {
+          "foc_dogo_per_transport_work": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"" , "datetime":""}
+          }
+        },
+        {
+          "foc_lfo_per_transport_work": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"" , "datetime":""}
+          }
+        },
+        {
+          "foc_hfo_per_transport_work": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"" , "datetime":""}
+          }
+        },
+        {
+          "foc_other_per_transport_work": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"" , "datetime":""}
+          }
+        },
+        {
+          "co2_per_distance": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"" , "datetime":""}
+          }
+        },
+        {
+          "eeoi": {
+            "type": "from_report_only",
+            "report": [
+              { "rep_type": "voyage_end", "rep_item": ["calc", "voyage_num"] }
+            ],
+            "output_target": ["data", "for_row", "data"],
+            "format": { "round":"" , "datetime":""}
+          }
+        }
+      ],
+      "in_port": []
+    },
+    "for_annual": {
+      "eu_mrv": [
+        {
+          "eu_mrv": {
+            "type": "calculate_phase1",
+            "report": [],
+            "calc_method": "_calc_voyage_type",
+            "calc_args": [
+              { "arg_type": "summarize_result", "summarized_item": ["data", "record_type"] },
+              { "arg_type": "summarize_result", "summarized_item": ["data", "for_row", "data", "dep_port"] },
+              { "arg_type": "summarize_result", "summarized_item": ["data", "for_row", "data", "arr_port"] }
+            ],
+            "output_target": ["data", "for_row", "data"]
+          }
+        }
+      ],
+      "imo_dcs": []
+    },
+    "excel_column": [
+        { "key" : "voyage_number"                , "style" : "gray1" , "width" : "10" , "category1" : "Voy.<br>Number"                   , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "eu_mrv"                       , "style" : "gray1" , "width" : "15" , "category1" : "EU MRV"                           , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "dep_port"                     , "style" : "gray1" , "width" : "20" , "category1" : "Dep. port"                        , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "dep_date_time"                , "style" : "gray1" , "width" : "15" , "category1" : "Date<br>Time"                     , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "arr_port"                     , "style" : "gray1" , "width" : "20" , "category1" : "Arr. port"                        , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "arr_date_time"                , "style" : "gray1" , "width" : "15" , "category1" : "Date<br>Time"                     , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "distance_travelled"           , "style" : "gray1" , "width" : "10" , "category1" : "Distance<br>Travelled"            , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "time_at_sea"                  , "style" : "gray1" , "width" : "10" , "category1" : "Time at sea"                      , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "hours_underway"               , "style" : "gray1" , "width" : "10" , "category1" : "Hours<br>Underway"                , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "foc_dogo"                     , "style" : "gray1" , "width" : "10" , "category1" : "FOC<br>DO/GO"                     , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "foc_lfo"                      , "style" : "gray1" , "width" : "10" , "category1" : "FOC<br>LFO"                       , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "foc_hfo"                      , "style" : "gray1" , "width" : "10" , "category1" : "FOC<br>HFO"                       , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "foc_other"                    , "style" : "gray1" , "width" : "10" , "category1" : "FOC<br>other"                     , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "co2_dogo"                     , "style" : "gray1" , "width" : "10" , "category1" : "CO2<br>DO/GO"                     , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "co2_lfo"                      , "style" : "gray1" , "width" : "10" , "category1" : "CO2<br>LFO"                       , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "co2_hfo"                      , "style" : "gray1" , "width" : "10" , "category1" : "CO2<br>HFO"                       , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "co2_other"                    , "style" : "gray1" , "width" : "10" , "category1" : "CO2<br>other"                     , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "cargo_weight"                 , "style" : "gray1" , "width" : "10" , "category1" : "Cargo Weight<br>(MT)"             , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "passenger"                    , "style" : "gray1" , "width" : "10" , "category1" : "Passenger"                        , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "unit"                         , "style" : "gray1" , "width" : "10" , "category1" : "Unit<br>(TEU)"                    , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "cars"                         , "style" : "gray1" , "width" : "10" , "category1" : "Cars"                             , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "dwt_carried"                  , "style" : "gray1" , "width" : "10" , "category1" : "DWT Carried<br>(MT)"              , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "volume"                       , "style" : "gray1" , "width" : "10" , "category1" : "Volume<br>(m^3)"                  , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "transport_work"               , "style" : "gray1" , "width" : "10" , "category1" : "Transport<br>work"                , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "foc_dogo_per_distance"        , "style" : "gray1" , "width" : "10" , "category1" : "FOC DO/GO per<br>distance"        , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "foc_lfo_per_distance"         , "style" : "gray1" , "width" : "10" , "category1" : "FOC LFO per<br>distance"          , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "foc_hfo_per_distance"         , "style" : "gray1" , "width" : "10" , "category1" : "FOC HFO per<br>distance"          , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "foc_other_per_distance"       , "style" : "gray1" , "width" : "10" , "category1" : "FOC other per<br>distance"        , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "foc_dogo_per_transport_work"  , "style" : "gray1" , "width" : "10" , "category1" : "FOC DO/GO per<br>transport work"  , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "foc_lfo_per_transport_work"   , "style" : "gray1" , "width" : "10" , "category1" : "FOC LFO per<br>transport work"    , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "foc_hfo_per_transport_work"   , "style" : "gray1" , "width" : "10" , "category1" : "FOC HFO per<br>transport work"    , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "foc_other_per_transport_work" , "style" : "gray1" , "width" : "10" , "category1" : "FOC other per<br>transport work"  , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "co2_per_distance"             , "style" : "gray1" , "width" : "10" , "category1" : "CO2 emissions<br>per distance"    , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" },
+        { "key" : "eeoi"                         , "style" : "gray1" , "width" : "10" , "category1" : "EEOI"                             , "columns" : "1" , "report_type":["DEP","NOON","ARR","STATUS"]  ,"display_item_key": ""  , "voyage":"#" , "format": {"round": "" , "datetime" : ""}, "merge_style" : "gray2" , "category2" : "" , "category3" : "" }
+    ]
+  }
+}

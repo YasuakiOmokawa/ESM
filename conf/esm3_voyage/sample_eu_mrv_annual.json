@@ -1,0 +1,40 @@
+{
+   "data" : {
+      "ship_info" : {
+        "vessel_name_repo" : "Test ship data",
+        "imo_num_repo" : "1000015",
+        "callsign_repo" : "CASE5",
+        "wni_ship_num" : "2233"
+      },
+      "arr_at_eu_port" : {
+         "data" : {
+            "voyage_number" : "voy1234",
+            "dep_port_name" : "voy dep port code"
+         }
+      },
+      "eu_to_eu" : {
+         "data" : {
+            "voyage_number" : "voy1234",
+            "dep_port_name" : "voy dep port code"
+         }
+      },
+      "summary" : {
+         "data" : {
+            "voyage_number" : "voy1234",
+            "dep_port_name" : "voy dep port code"
+         }
+      },
+      "dep_from_eu_port" : {
+         "data" : {
+            "voyage_number" : "voy1234",
+            "dep_port_name" : "voy dep port code"
+         }
+      },
+      "in_port" : {
+         "data" : {
+            "voyage_number" : "voy1234",
+            "dep_port_name" : "voy dep port code"
+         }
+      }
+   }
+}

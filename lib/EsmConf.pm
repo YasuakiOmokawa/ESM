@@ -1,0 +1,125 @@
+package EsmConf;
+use warnings;
+
+our $IS_DEV   = `hostname` =~ /pt-/ ? 1 : 0;
+our $I_AM_GEN = `hostname` =~ /gen/ ? 1 : 0;
+
+our $BASE_TOP            = "/usr/amoeba/pub/b/ESM";
+our $LIB_DIR             = $BASE_TOP."/lib";
+our $TBL_DIR             = $BASE_TOP."/tbl";
+our $WEB_DIR             = $BASE_TOP."/web";
+our $TEMPLATE_DIR        = $BASE_TOP."/template";
+our $CACHE_DIR           = $BASE_TOP."/cache";
+our $DATA_DIR            = $BASE_TOP."/data";
+our $TMP_DIR             = $BASE_TOP."/tmp";
+our $SETTING_DIR         = $BASE_TOP."/setting";
+our $CONF_DIR            = $BASE_TOP."/conf";
+our $NK_DIR              = $BASE_TOP."/nk";
+our $NK_CONF_DIR         = $NK_DIR."/conf";
+our $CONF_ALLWEATHER_DIR = $CONF_DIR."/AllWeather";
+our $COST_DIR            = $SETTING_DIR."/cost";
+our $LOGBOOK_SETTING_DIR = $SETTING_DIR."/Logbook";
+
+our $LOG_DIR             = $BASE_TOP."/log";
+our $LOG_SEAMARGIN_DIR   = $LOG_DIR."/SeaMargin";
+our $LOG_ALLWEATHER_DIR  = $LOG_DIR."/AllWeather";
+our $LOG_SETTING_DIR     = $LOG_DIR."/Setting";
+our $LOG_TONNAGEALLOCATION_DIR  = $LOG_DIR."/TonnageAllocation";
+our $LOG_VOYAGE_PLAN_UPDATE_DIR = $LOG_DIR."/VoyagePlanUpdate";
+our $LOG_COST_CALC_DIR     = $LOG_DIR."/CostCalculation";
+our $LOG_LOGBOOK_DIR       = $LOG_DIR."/Logbook";
+
+our $FIFO = "/usr/amoeba/tmp/disseminate2";
+
+our $PORT       = "$TBL_DIR/port";
+our $PORT_ALL   = "$PORT/port_all.json";
+our $DWT_TBL    = "$TBL_DIR/dwt_tbl.json";
+
+our $LLOYDS      = "$TBL_DIR/lloyds";
+our $VESSEL_LIST = "$TBL_DIR/vesselList";
+our $SHIP_INFO   = "$TBL_DIR/shipInfo";
+
+our $SHIP_GROUP      = "$SETTING_DIR/shipgroup";
+our $DISPLAY_SETTING = "$SETTING_DIR/display";
+our $ACCOUNT_INFO    = "$SETTING_DIR/picinfo";
+
+our $DAILY_DATA_DIR  = $DATA_DIR."/daily";
+our $VOYAGE_DATA_DIR  = $DATA_DIR."/voyage";
+our $UNDERWAY_DIR    = $DATA_DIR."/underway";
+
+our $CONVERT_FILES_NK = $NK_CONF_DIR."/convert_files_nk.json";
+
+our $PREV_REPORT_DIFF = (60*60*24*30); # 30days
+
+########## v3 add #############
+our $DATA_FORMAT_DEF = $CONF_DIR."/esm3_voyage";
+########## v3 add #############
+
+### Report Type ID
+our $DEPARTURE_REPORT_TYPE_ID = "002";
+our $NOON_REPORT_TYPE_ID = "003";
+our $BERTHING_REPORT_TYPE_ID = "017";
+our $ANCHORING_REPORT_TYPE_ID = "018";
+our $ANCHORING_END_REPORT_TYPE_ID = "019";
+our $DRIFTING_REPORT_TYPE_ID = "020";
+our $DRIFTING_END_REPORT_TYPE_ID = "021";
+our $BUNKERING_REPORT_TYPE_ID = "023";
+our $CARGO_INFORMATION_REPORT_TYPE_ID = "024";
+
+#### esm v3.0
+#-----------------------------------
+# Report Type
+#-----------------------------------
+our $DEPARTURE_REPORT  = 'DEP';
+our $ARRIVAL_REPORT    = 'ARR';
+our $NOON_REPORT       = 'NOON';
+our $BERTHING_REPORT   = 'BERTH';
+our $BERTHING_STATUS   = 'BERTH';
+our $STATUS_REPORT     = 'STATUS';
+our $DRIFTING_REPORT   = 'DRFT';
+our $ANCHORING_REPORT  = 'ANCH';
+our $BUNKERING_REPORT  = 'BUNKER';
+our $ICEPASSAGE_REPORT = 'ICEPASS';
+our $CARGOINFORMATION_REPORT = 'CARGO';
+
+#### esm v3.0
+#-----------------------------------
+# Report Type Repo
+#-----------------------------------
+our $BERTHING_REPORT_REPO = 'BERTHING REPORT';
+our $NEXT_VOYAGEINFO_REPORT_REPO = 'NEXT VOYAGEINFO REPORT';
+our $DEPARTURE_REPORT_REPO = 'DEPARTURE REPORT';
+our $NOON_REPORT_REPO = 'NOON REPORT';
+our $ARRIVAL_REPORT_REPO = 'ARRIVAL REPORT';
+our $IRREGULAR_REPORT_REPO = 'IRREGULAR REPORT';
+our $SHIFTING_REPORT_REPO = 'SHIFTING REPORT';
+our $ANCHORING_REPORT_REPO = 'ANCHORING REPORT';
+our $ANCHORING_NOON_REPORT_REPO = 'ANCHORING NOON REPORT';
+our $DRIFTING_REPORT_REPO = 'DRIFTING REPORT';
+our $DRIFTING_NOON_REPORT_REPO = 'DRIFTING NOON REPORT';
+our $INPORT_NOON_REPORT_REPO = 'INPORT NOON REPORT';
+our $DOCKING_REPORT_REPO = 'DOCKING REPORT';
+our $EVENT_REPORT_REPO = 'EVENT REPORT';
+our $WEATHER_REPORT_REPO = 'WEATHER REPORT';
+our $ICE_REPORT_REPO = 'ICE REPORT';
+our $GLOBAL_PORT_FORECAST_REQUEST_REPO = 'GLOBAL PORT FORECAST REQUEST';
+our $ANCHORING_START_REPORT_TYPE_ID = '018';
+our $ANCHORING_START_REPORT_REPO = 'ANCHORING START REPORT';
+our $ANCHORING_END_REPORT_REPO = 'ANCHORING END REPORT';
+our $DRIFTING_START_REPORT_TYPE_ID = '020';
+our $DRIFTING_START_REPORT_REPO = 'DRIFTING START REPORT';
+our $DRIFTING_END_REPORT_REPO = 'DRIFTING END REPORT';
+our $BUNKERING_START_REPORT_TYPE_ID = '022';
+our $BUNKERING_START_REPORT_REPO = 'BUNKERING START REPORT';
+our $BUNKERING_REPORT_REPO = 'BUNKERING REPORT';
+our $CARGO_INFORMATION_REPORT_REPO = 'CARGO INFORMATION REPORT';
+our $ICE_PASSAGE_START_REPORT_TYPE_ID = '025';
+our $ICE_PASSAGE_START_REPORT_REPO = 'ICE PASSAGE START REPORT';
+our $ICE_PASSAGE_REPORT_REPO = 'ICE PASSAGE REPORT';
+our $COMPLETE_ANCHORING_REPORT_REPO      = 'COMPLETE ANCHORING REPORT';
+our $ANCHORING_START_AND_END_REPORT_REPO = 'ANCHORING START AND END REPORT';
+our $COMPLETE_DRIFTING_REPORT_REPO       = 'COMPLETE DRIFTING REPORT';
+our $DRIFTING_START_AND_END_REPORT_REPO  = 'DRIFTING START AND END REPORT';
+our $DRIFTING_REPORT_COMPLETION_REPO     = 'DRIFTING REPORT COMPLETION';
+
+1;
